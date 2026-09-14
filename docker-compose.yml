@@ -1,0 +1,37 @@
+services:
+  codefort:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: codefort
+    ports:
+      # Localhost-only by default: this API executes arbitrary code.
+      # Only publish wider when CODEFORT_TOKEN is set and understood.
+      - '127.0.0.1:3000:3000'
+    restart: unless-stopped
+    # Reap orphaned sandbox descendants so completed runs do not consume the
+    # container PID budget as zombies.
+    init: true
+    environment:
+      - NODE_ENV=production
+      # Shared secret for POST /v1/run (callers send `Authorization: Bearer ...`).
+      # Empty = open API: only bind 127.0.0.1 or run on a private network then.
+      - CODEFORT_TOKEN=${CODEFORT_TOKEN:-}
+    security_opt:
+      - apparmor=unconfined
+      - seccomp=unconfined
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          memory: 0.5g
+          cpus: '0.50'
+          pids: 250
+    networks:
+      - judge-network
+
+networks:
+  judge-network:
+    name: judge-network
+    external: true

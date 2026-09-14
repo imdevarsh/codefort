@@ -6,16 +6,16 @@
     "format": "prettier . --write"
   },
   "dependencies": {
-    "@hono/zod-openapi": "^0.19.5",
+    "@hono/zod-openapi": "^0.19.10",
     "@hono/zod-validator": "^0.4.3",
-    "@scalar/hono-api-reference": "^0.8.2",
-    "hono": "^4.7.7",
-    "hono-openapi": "^0.4.6",
-    "zod": "^3.24.3",
+    "@scalar/hono-api-reference": "^0.8.10",
+    "hono": "^4.13.7",
+    "hono-openapi": "^0.4.8",
+    "zod": "^3.25.76",
     "zod-openapi": "^4.2.4"
   },
   "devDependencies": {
-    "@types/bun": "latest",
+    "@types/bun": "^1.4.2",
     "prettier": "3.5.3"
   }
 }

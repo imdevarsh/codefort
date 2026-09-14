@@ -1,0 +1,6 @@
+{
+  "name": "Python",
+  "fileName": "code.py",
+  "runScript": "./run.bash",
+  "neededDirs": []
+}
